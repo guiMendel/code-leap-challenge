@@ -1,7 +1,8 @@
 import React from 'react'
 import './style.css'
+import { FaEdit, FaEraser, FaTrash } from 'react-icons/fa'
 
-export default function Post({ post }) {
+export default function Post({ post, fromUser }) {
   const postTime = () => {
     const postDate = new Date(post.created_datetime)
 
@@ -14,7 +15,7 @@ export default function Post({ post }) {
 
     // If it's less than a minute old
     if (dateDifference <= 60000)
-      return `${formatAs('second', Math.round(dateDifference / 1000))}`
+      return `${formatAs('second', Math.round(dateDifference / 10000) * 10)}`
 
     // If it's less than an hour old
     if (dateDifference <= 3.6e6)
@@ -33,7 +34,21 @@ export default function Post({ post }) {
   if (post != undefined)
     return (
       <div className="post">
-        <h1>{post.title}</h1>
+        <div className="header">
+          <h1>{post.title}</h1>
+
+          <span className="controls">
+            {fromUser ? (
+              <>
+                <FaEdit />
+                <FaEraser />
+              </>
+            ) : (
+              ''
+            )}
+          </span>
+        </div>
+
         <h2>
           <span className="username">@{post.username}</span> — {postTime()}
         </h2>

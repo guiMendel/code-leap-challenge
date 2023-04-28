@@ -98,7 +98,7 @@ export default function PostIndex({ logout, user }) {
 
       <div className="posts">
         {posts.map((post) => (
-          <Post key={post.id} post={post} />
+          <Post key={post.id} post={post} fromUser={user == post.username} />
         ))}
       </div>
     </main>
