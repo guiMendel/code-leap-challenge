@@ -1,38 +1,87 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  width: 100%;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  position: relative;
+
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
+  background-color: var(--main);
+  color: var(--second);
+
+  padding-inline: 15%;
+
+  background: linear-gradient(
+    0deg,
+    rgba(58, 65, 111, 1) 0%,
+    rgba(33, 40, 75, 1) 100%
+  );
 }
 
-.App-link {
-  color: #61dafb;
+/* GENERAL */
+
+h1 {
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: var(--highlight);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h1::before {
+  content: '> ';
+}
+
+/* MODALS */
+
+.modal {
+  position: fixed;
+
+  border-radius: 20px;
+  padding: 1rem 2rem;
+
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* FORMS */
+
+form {
+  flex-direction: column;
+  gap: 2rem;
+}
+
+form .entry {
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+form label {
+  cursor: pointer;
+}
+
+form input,
+button {
+  font-size: inherit;
+
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+
+  color: var(--highlight);
+  cursor: pointer;
+}
+
+form input {
+  border: 4px solid var(--sub);
+  background: none;
+  backdrop-filter: brightness(0.8);
+}
+
+form button {
+  background-color: var(--sub);
+  border: none;
+
+  color: var(--main);
+  font-weight: 700;
+  width: max-content;
+  min-width: 10rem;
+  align-self: center;
 }
