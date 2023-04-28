@@ -1,0 +1,15 @@
+.create-user h1 {
+  animation: slide-in 0.7s ease-out;
+}
+
+.submit-user:hover {
+  filter: brightness(1.1);
+}
+
+.create-user .entry {
+  animation: slide-in 0.7s ease-out 200ms backwards;
+}
+
+.create-user .submit-user {
+  animation: slide-in 0.7s ease-out 500ms backwards;
+}

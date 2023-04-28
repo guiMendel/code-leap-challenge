@@ -32,6 +32,8 @@ main {
   padding: 1.5rem 3rem;
   border-radius: 20px;
   margin-inline: var(--side-gap);
+
+  animation: slide-in 0.7s ease-out;
 }
 
 .new-post h1 {
@@ -73,4 +75,8 @@ main {
   align-self: flex-end;
   border-top: 3px solid var(--sub);
   margin-bottom: var(--post-gap);
+}
+
+.posts > * {
+  animation: slide-in 0.7s ease-out var(--animation-delay) backwards;
 }

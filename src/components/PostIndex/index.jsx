@@ -58,10 +58,13 @@ export default function PostIndex({ logout, user }) {
     }))
   }
 
-  const erasePost = (id) => {
-    axios.delete(`${apiUrl}/${id}/`)
-    updatePosts()
-  }
+  const erasePost = (id) => axios.delete(`${apiUrl}/${id}/`)
+
+  const updatePost = (newPost, id) =>
+    axios.patch(`${apiUrl}/${id}/`, {
+      title: newPost.title,
+      content: newPost.content,
+    })
 
   return (
     <main>
@@ -78,12 +81,14 @@ export default function PostIndex({ logout, user }) {
       </form>
 
       <div className="posts">
-        {posts.map((post) => (
+        {posts.map((post, index) => (
           <Post
             key={post.id}
             post={post}
             fromUser={user == post.username}
             eraseSelf={() => erasePost(post.id)}
+            updateSelf={(newPost) => updatePost(newPost, post.id)}
+            animationDelay={index * 200 + 400}
           />
         ))}
       </div>

@@ -1,8 +1,16 @@
 import React, { useState } from 'react'
 import './style.css'
 import { FaEdit, FaEraser, FaTrash } from 'react-icons/fa'
+import EditPost from '../EditPost'
 
-export default function Post({ post, fromUser, eraseSelf }) {
+export default function Post({
+  post,
+  fromUser,
+  eraseSelf,
+  updateSelf,
+  animationDelay,
+}) {
+  // Returns post time formatted
   const postTime = () => {
     const postDate = new Date(post.created_datetime)
 
@@ -31,13 +39,18 @@ export default function Post({ post, fromUser, eraseSelf }) {
     ).padStart(2, '0')}`
   }
 
-  // Whether delete has been requested
+  // Whether erase has been requested
   const [eraseRequested, setEraseRequested] = useState(false)
+
+  // Whether edit has been requested
+  const [editRequested, setEditRequested] = useState(false)
+
+  const [editedPost, setEditedPost] = useState(post)
 
   if (post != undefined)
     return (
-      <div className="post">
-        {/* Edit modal */}
+      <div className="post" style={{ '--animation-delay': `${animationDelay}ms` }}>
+        {/* Erase modal */}
         <div className={`modal ${eraseRequested ? '' : 'inactive'}`}>
           <div className="erase-confirm">
             <p>Are you sure you want to erase post "{post.title}"?</p>
@@ -61,13 +74,39 @@ export default function Post({ post, fromUser, eraseSelf }) {
           </div>
         </div>
 
+        {/* Edit modal */}
+        <div className={`modal ${editRequested ? '' : 'inactive'}`}>
+          <div className="edit-confirm">
+            <h1>What will you change?</h1>
+
+            <EditPost post={editedPost} onChange={setEditedPost} />
+
+            <div className="options">
+              <button
+                onClick={() => {
+                  updateSelf(editedPost)
+                  setEditRequested(false)
+                }}
+              >
+                save
+              </button>
+              <button
+                className="cancel"
+                onClick={() => setEditRequested(false)}
+              >
+                cancel
+              </button>
+            </div>
+          </div>
+        </div>
+
         <div className="header">
           <h1>{post.title}</h1>
 
           <span className="controls">
             {fromUser ? (
               <>
-                <FaEdit />
+                <FaEdit onClick={() => setEditRequested(true)} />
                 <FaEraser onClick={() => setEraseRequested(true)} />
               </>
             ) : (

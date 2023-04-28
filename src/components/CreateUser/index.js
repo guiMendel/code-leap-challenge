@@ -10,7 +10,7 @@ export default function CreateUser({ user, setUser, submit }) {
   }
 
   return (
-    <form onSubmit={submitUser}>
+    <form className='create-user' onSubmit={submitUser}>
       <h1>Welcome to CodeLeap network!</h1>
 
       <span className="entry" htmlFor="username">
@@ -18,7 +18,7 @@ export default function CreateUser({ user, setUser, submit }) {
         <input type="text" id="username" value={user} onChange={eventSetUser} />
       </span>
 
-      <button>enter</button>
+      <button className='submit-user'>enter</button>
     </form>
   )
 }

@@ -61,7 +61,16 @@
   align-items: center;
 }
 
-.erase-confirm .options {
+.edit-confirm {
+  overflow: auto;
+  max-height: 90%;
+}
+
+.edit-confirm h1 {
+  color: var(--main);
+}
+
+.options {
   align-items: center;
   justify-content: center;
   column-gap: 2rem;
@@ -70,17 +79,17 @@
   flex-wrap: wrap;
 }
 
-.erase-confirm button {
+.options button {
   background-color: var(--highlight);
 
   transition: all 100ms;
 }
 
-.erase-confirm button:hover {
+.options button:hover {
   filter: brightness(1.1);
 }
 
-.erase-confirm button.cancel {
+.options button.cancel {
   background-color: var(--second);
   color: var(--highlight);
 }
