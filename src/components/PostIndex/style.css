@@ -1,9 +1,11 @@
 main {
-  padding-top: 3rem;
+  padding-top: 3.5rem;
 
   flex-direction: column;
 
   gap: 5rem;
+
+  width: 100%;
 }
 
 #logout {
@@ -13,7 +15,7 @@ main {
 
   font-size: 1.5rem;
   margin: 1rem;
-  color: var(--sub);
+  color: var(--highlight);
 
   cursor: pointer;
 }
@@ -22,8 +24,59 @@ main {
   background-color: var(--sub);
   padding: 1.5rem 3rem;
   border-radius: 20px;
+  margin-inline: var(--side-gap);
 }
 
 .new-post h1 {
   color: var(--main);
+}
+
+.new-post button {
+  background-color: var(--highlight);
+
+  transition: all 300ms;
+}
+
+.new-post input, .new-post textarea {
+  border-color: var(--highlight);
+ 
+}
+
+.new-post .disabled {
+  background-color: var(--sub);
+  color: var(--highlight);
+  filter: brightness(0.8);
+  cursor: default;
+}
+
+
+@media (max-width: 768px) {
+  .new-post {
+    /* padding: 0; */
+    margin: 0;
+    border-radius: 0;
+  }
+}
+
+.posts {
+  flex-direction: column;
+  margin-inline: var(--side-gap);
+
+  --post-gap: 3rem;
+  gap: var(--post-gap);
+}
+
+.posts > *:not(:first-child):before {
+  content: '';
+  width: 40%;
+  border-top: 3px solid var(--sub);
+  margin-bottom: var(--post-gap);
+}
+
+.posts > *:not(:first-child):nth-child(odd):before {
+  content: '';
+  width: 80%;
+  align-self: flex-end;
+  border-top: 3px solid var(--sub);
+  margin-bottom: var(--post-gap);
 }

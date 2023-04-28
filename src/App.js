@@ -46,7 +46,7 @@ function App() {
           submit={() => setUserSubmitted(true)}
         />
       ) : (
-        <PostIndex logout={() => setUserSubmitted(false)} />
+        <PostIndex user={user} logout={() => setUserSubmitted(false)} />
       )}
     </div>
   )

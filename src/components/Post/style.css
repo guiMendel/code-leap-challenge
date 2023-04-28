@@ -1,0 +1,13 @@
+.post {
+  flex-direction: column;
+}
+
+.post h2 {
+  display: inline;
+  margin-bottom: 1rem;
+}
+
+.post .username {
+  color: var(--sub);
+  display: inline;
+}
