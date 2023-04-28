@@ -15,7 +15,6 @@ export default function PostIndex({ logout, user }) {
 
   // Updates the posts
   const updatePosts = () => {
-    console.log('update')
     axios.get(`${apiUrl}/`).then(({ data }) => setPosts(data.results))
   }
 
@@ -39,16 +38,16 @@ export default function PostIndex({ logout, user }) {
   })
 
   // Whether the new post is valid to submit
-  const submittable = () => newPost.content != '' && newPost.title != ''
+  const submittable = () =>
+    newPost.content.length > 0 && newPost.title.length > 0
 
   // Submits a new post
   const submitNewPost = (event) => {
     event.preventDefault()
 
-    if (submittable() == false) return
+    if (submittable() === false) return
 
     axios.post(`${apiUrl}/`, newPost)
-    // console.log('post', newPost)
 
     // Clear fields
     setNewPost((oldPost) => ({
@@ -85,7 +84,7 @@ export default function PostIndex({ logout, user }) {
           <Post
             key={post.id}
             post={post}
-            fromUser={user == post.username}
+            fromUser={user === post.username}
             eraseSelf={() => erasePost(post.id)}
             updateSelf={(newPost) => updatePost(newPost, post.id)}
             animationDelay={index * 200 + 400}

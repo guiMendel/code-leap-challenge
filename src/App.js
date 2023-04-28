@@ -22,17 +22,12 @@ function App() {
 
   useEffect(() => {
     // Check for stored user
-    if (localStorage.getItem(userNameStorageKey) != undefined) {
+    if (localStorage.getItem(userNameStorageKey) !== null) {
       // Set stored user
       setUser(JSON.parse(localStorage.getItem(userNameStorageKey)))
 
       // Set user as submitted
       setUserSubmitted(true)
-
-      console.log(
-        'Loaded stored user',
-        localStorage.getItem(userNameStorageKey)
-      )
     }
   }, [])
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './style.css'
-import { FaEdit, FaEraser, FaTrash } from 'react-icons/fa'
+import { FaEdit, FaEraser } from 'react-icons/fa'
 import EditPost from '../EditPost'
 
 export default function Post({
@@ -15,7 +15,7 @@ export default function Post({
     const postDate = new Date(post.created_datetime)
 
     const formatAs = (timeType, value) => {
-      return `${value} ${timeType}${value == 1 ? '' : 's'} ago`
+      return `${value} ${timeType}${value === 1 ? '' : 's'} ago`
     }
 
     // Get time difference
@@ -47,9 +47,12 @@ export default function Post({
 
   const [editedPost, setEditedPost] = useState(post)
 
-  if (post != undefined)
+  if (post !== undefined && post !== null)
     return (
-      <div className="post" style={{ '--animation-delay': `${animationDelay}ms` }}>
+      <div
+        className="post"
+        style={{ '--animation-delay': `${animationDelay}ms` }}
+      >
         {/* Erase modal */}
         <div className={`modal ${eraseRequested ? '' : 'inactive'}`}>
           <div className="erase-confirm">

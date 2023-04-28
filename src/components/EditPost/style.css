@@ -3,13 +3,6 @@
   border-color: var(--highlight);
 }
 
-.edit-post .disabled {
-  background-color: var(--sub);
-  color: var(--highlight);
-  filter: brightness(0.8);
-  cursor: default;
-}
-
 .edit-post small {
   align-self: flex-end;
   font-weight: 600;
