@@ -1,5 +1,5 @@
 main {
-  padding-top: 3.5rem;
+  padding-block: 3.5rem;
 
   flex-direction: column;
 
@@ -54,6 +54,11 @@ main {
   color: var(--highlight);
   filter: brightness(0.8);
   cursor: default;
+}
+
+.new-post small {
+  align-self: flex-end;
+  font-weight: 600;
 }
 
 @media (max-width: 768px) {

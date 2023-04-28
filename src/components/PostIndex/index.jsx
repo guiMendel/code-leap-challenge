@@ -8,18 +8,21 @@ import Post from '../Post'
 // Base url of api
 const apiUrl = 'https://dev.codeleap.co.uk/careers'
 
+const titleLimit = 30
+const contentLimit = 700
+
 export default function PostIndex({ logout, user }) {
   // Current posts
   const [posts, setPosts] = useState([])
 
+  // Updates the posts
+  const updatePosts = () => {
+    console.log('update')
+    axios.get(`${apiUrl}/`).then(({ data }) => setPosts(data.results))
+  }
+
   // Get posts
   useEffect(() => {
-    // Updates the posts
-    const updatePosts = () => {
-      console.log('update')
-      axios.get(`${apiUrl}/`).then(({ data }) => setPosts(data.results))
-    }
-
     // Update right away
     updatePosts()
 
@@ -58,11 +61,19 @@ export default function PostIndex({ logout, user }) {
   }
 
   // Updates a field from the new post
-  const updatePostField = (field, value) =>
+  const updatePostField = (field, value, limit) => {
+    value = value.trim().slice(0, limit)
+
     setNewPost((oldPost) => ({
       ...oldPost,
       [field]: value,
     }))
+  }
+
+  const erasePost = (id) => {
+    axios.delete(`${apiUrl}/${id}/`)
+    updatePosts()
+  }
 
   return (
     <main>
@@ -78,7 +89,9 @@ export default function PostIndex({ logout, user }) {
             type="text"
             id="new-title"
             value={newPost.title}
-            onChange={(event) => updatePostField('title', event.target.value)}
+            onChange={(event) =>
+              updatePostField('title', event.target.value, titleLimit)
+            }
           />
         </div>
 
@@ -87,10 +100,15 @@ export default function PostIndex({ logout, user }) {
           <textarea
             id="new-content"
             value={newPost.content}
-            onChange={(event) => updatePostField('content', event.target.value)}
+            onChange={(event) =>
+              updatePostField('content', event.target.value, contentLimit)
+            }
             cols="30"
             rows="10"
           ></textarea>
+          <small>
+            characters left: {contentLimit - newPost.content.length}
+          </small>
         </div>
 
         <button className={`${submittable() ? '' : 'disabled'}`}>create</button>
@@ -98,7 +116,12 @@ export default function PostIndex({ logout, user }) {
 
       <div className="posts">
         {posts.map((post) => (
-          <Post key={post.id} post={post} fromUser={user == post.username} />
+          <Post
+            key={post.id}
+            post={post}
+            fromUser={user == post.username}
+            eraseSelf={() => erasePost(post.id)}
+          />
         ))}
       </div>
     </main>

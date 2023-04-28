@@ -49,3 +49,38 @@
   color: var(--sub);
   display: inline;
 }
+
+.erase-confirm {
+  flex-direction: column;
+  width: max-content;
+
+  max-width: 80vw;
+
+  font-weight: 500;
+
+  align-items: center;
+}
+
+.erase-confirm .options {
+  align-items: center;
+  justify-content: center;
+  column-gap: 2rem;
+  row-gap: 1rem;
+
+  flex-wrap: wrap;
+}
+
+.erase-confirm button {
+  background-color: var(--highlight);
+
+  transition: all 100ms;
+}
+
+.erase-confirm button:hover {
+  filter: brightness(1.1);
+}
+
+.erase-confirm button.cancel {
+  background-color: var(--second);
+  color: var(--highlight);
+}

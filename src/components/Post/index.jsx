@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './style.css'
 import { FaEdit, FaEraser, FaTrash } from 'react-icons/fa'
 
-export default function Post({ post, fromUser }) {
+export default function Post({ post, fromUser, eraseSelf }) {
   const postTime = () => {
     const postDate = new Date(post.created_datetime)
 
@@ -31,9 +31,36 @@ export default function Post({ post, fromUser }) {
     ).padStart(2, '0')}`
   }
 
+  // Whether delete has been requested
+  const [eraseRequested, setEraseRequested] = useState(false)
+
   if (post != undefined)
     return (
       <div className="post">
+        {/* Edit modal */}
+        <div className={`modal ${eraseRequested ? '' : 'inactive'}`}>
+          <div className="erase-confirm">
+            <p>Are you sure you want to erase post "{post.title}"?</p>
+
+            <div className="options">
+              <button
+                onClick={() => {
+                  eraseSelf()
+                  setEraseRequested(false)
+                }}
+              >
+                erase
+              </button>
+              <button
+                className="cancel"
+                onClick={() => setEraseRequested(false)}
+              >
+                cancel
+              </button>
+            </div>
+          </div>
+        </div>
+
         <div className="header">
           <h1>{post.title}</h1>
 
@@ -41,7 +68,7 @@ export default function Post({ post, fromUser }) {
             {fromUser ? (
               <>
                 <FaEdit />
-                <FaEraser />
+                <FaEraser onClick={() => setEraseRequested(true)} />
               </>
             ) : (
               ''
