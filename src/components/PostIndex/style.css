@@ -44,23 +44,6 @@ main {
   transition: all 300ms;
 }
 
-.new-post input,
-.new-post textarea {
-  border-color: var(--highlight);
-}
-
-.new-post .disabled {
-  background-color: var(--sub);
-  color: var(--highlight);
-  filter: brightness(0.8);
-  cursor: default;
-}
-
-.new-post small {
-  align-self: flex-end;
-  font-weight: 600;
-}
-
 @media (max-width: 768px) {
   .new-post {
     /* padding: 0; */

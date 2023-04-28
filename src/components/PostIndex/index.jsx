@@ -4,12 +4,10 @@ import React, { useEffect, useState } from 'react'
 import './style.css'
 import axios from 'axios'
 import Post from '../Post'
+import EditPost from '../EditPost'
 
 // Base url of api
 const apiUrl = 'https://dev.codeleap.co.uk/careers'
-
-const titleLimit = 30
-const contentLimit = 700
 
 export default function PostIndex({ logout, user }) {
   // Current posts
@@ -60,16 +58,6 @@ export default function PostIndex({ logout, user }) {
     }))
   }
 
-  // Updates a field from the new post
-  const updatePostField = (field, value, limit) => {
-    value = value.trim().slice(0, limit)
-
-    setNewPost((oldPost) => ({
-      ...oldPost,
-      [field]: value,
-    }))
-  }
-
   const erasePost = (id) => {
     axios.delete(`${apiUrl}/${id}/`)
     updatePosts()
@@ -83,33 +71,8 @@ export default function PostIndex({ logout, user }) {
       <form className="new-post" onSubmit={submitNewPost}>
         <h1>What's on your mind?</h1>
 
-        <div className="entry">
-          <label htmlFor="new-title">Title</label>
-          <input
-            type="text"
-            id="new-title"
-            value={newPost.title}
-            onChange={(event) =>
-              updatePostField('title', event.target.value, titleLimit)
-            }
-          />
-        </div>
-
-        <div className="entry">
-          <label htmlFor="new-content">Content</label>
-          <textarea
-            id="new-content"
-            value={newPost.content}
-            onChange={(event) =>
-              updatePostField('content', event.target.value, contentLimit)
-            }
-            cols="30"
-            rows="10"
-          ></textarea>
-          <small>
-            characters left: {contentLimit - newPost.content.length}
-          </small>
-        </div>
+        {/* New post editor */}
+        <EditPost post={newPost} onChange={setNewPost} />
 
         <button className={`${submittable() ? '' : 'disabled'}`}>create</button>
       </form>
