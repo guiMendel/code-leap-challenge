@@ -1,13 +1,21 @@
+import React from 'react'
 import './style.css'
 
-export default function CreateUser() {
+export default function CreateUser({ user, setUser, submit }) {
+  const eventSetUser = ({ target }) => setUser(target.value)
+
+  const submitUser = (event) => {
+    event.preventDefault()
+    submit()
+  }
+
   return (
-    <form>
+    <form onSubmit={submitUser}>
       <h1>Welcome to CodeLeap network!</h1>
 
-      <span className='entry' htmlFor='username'>
+      <span className="entry" htmlFor="username">
         <label htmlFor="username">Please enter your username</label>
-        <input type="text" id='username' />
+        <input type="text" id="username" value={user} onChange={eventSetUser} />
       </span>
 
       <button>enter</button>

@@ -1,0 +1,29 @@
+main {
+  padding-top: 3rem;
+
+  flex-direction: column;
+
+  gap: 5rem;
+}
+
+#logout {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  font-size: 1.5rem;
+  margin: 1rem;
+  color: var(--sub);
+
+  cursor: pointer;
+}
+
+.new-post {
+  background-color: var(--sub);
+  padding: 1.5rem 3rem;
+  border-radius: 20px;
+}
+
+.new-post h1 {
+  color: var(--main);
+}

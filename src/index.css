@@ -7,7 +7,8 @@
 
 div,
 span,
-form {
+form,
+main {
   display: flex;
 }
 
@@ -26,8 +27,8 @@ code {
 }
 
 :root {
-  --main: #2A2F4F;
-  --second: #917FB3;
-  --sub: #E5BEEC;
-  --highlight: #FDE2F3;
+  --main: #2a2f4f;
+  --second: #917fb3;
+  --sub: #e5beec;
+  --highlight: #fde2f3;
 }

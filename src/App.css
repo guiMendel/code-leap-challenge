@@ -16,6 +16,9 @@
     rgba(58, 65, 111, 1) 0%,
     rgba(33, 40, 75, 1) 100%
   );
+
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 /* GENERAL */
@@ -59,8 +62,10 @@ form label {
 }
 
 form input,
-button {
+form button,
+form textarea {
   font-size: inherit;
+  font-family: inherit;
 
   border-radius: 20px;
   padding: 0.5rem 1rem;
@@ -69,7 +74,8 @@ button {
   cursor: pointer;
 }
 
-form input {
+form input,
+form textarea {
   border: 4px solid var(--sub);
   background: none;
   backdrop-filter: brightness(0.8);
